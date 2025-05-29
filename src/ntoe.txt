@@ -1,0 +1,7 @@
+Hiển thị lời chào kèm tên đơn giản
+Tính toán 
+Hiển thị tam giác hợp lệ dựa trên 3 cạnh
+
+Hiển thị thông tin sinh viên
+
+Hiển thị thông tin sinh viên có gpa, suy ra pass môn hay ko, chữ đỏ hay xanh
