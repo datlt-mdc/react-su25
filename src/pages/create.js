@@ -1,13 +1,14 @@
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import { createNewStudent } from "../api/student";
-import { router } from "../route/route";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function CreateStudentForm() {
-
+  let navigate = useNavigate();
+  
   async function onFinish(submittedValue) {
     console.log(submittedValue);
     await createNewStudent(submittedValue);
+    navigate("/data-list")
   }
   const onFinishFailed = () => {};
   return (
