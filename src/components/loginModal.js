@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Button, Form, Input, message, Modal } from "antd";
 import { login } from "../api/user";
 import { jwtDecode } from "jwt-decode";
+import { useAuth } from "../contexts/authContext";
 
 const LoginModal = (props) => {
+  const { user, handleLogin } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -21,31 +23,8 @@ const LoginModal = (props) => {
 
   const onSubmitLogin = (value) => {
     // call api
-    login(value)
-      .then((res) => {
-        console.log("Login info ", res);
-
-        const decoded = jwtDecode(res.token);
-
-        console.log("Decode item", decoded)
-
-        localStorage.setItem("token", res.token)
-        localStorage.setItem("userInfo", JSON.stringify(decoded))
-
-        messageApi.open({
-          type: "success",
-          content: "Login success",
-        });
-        props.handleLoginOk();
-        //
-      })
-      .catch((ex) => {
-        console.log(ex)
-        messageApi.open({
-          type: "error",
-          content: "Invalid credential",
-        });
-      });
+    handleLogin(value);
+    props.handleLoginOk();
   };
   return (
     <>

@@ -4,6 +4,8 @@ import { BiUser } from "react-icons/bi";
 import { CgWebsite } from "react-icons/cg";
 import LoginModal from "../components/loginModal";
 import { useLogout } from "../utils/getUserInfo";
+import { MenuUser } from "../components/menuUser";
+import { useAuth } from "../contexts/authContext";
 const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle = {
@@ -39,6 +41,7 @@ const layoutStyle = {
 };
 
 export const MainLayout = (props) => {
+  const { user } = useAuth();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const showLoginModal = () => {
@@ -51,12 +54,10 @@ export const MainLayout = (props) => {
     setIsLoginModalOpen(false);
   };
 
-
-
   console.log("item inside", props);
   return (
     <Flex gap="middle" wrap>
-      <LoginModal 
+      <LoginModal
         isLoginModalOpen={isLoginModalOpen}
         handleLoginCancel={handleLoginCancel}
         handleLoginOk={handleLoginOk}
@@ -65,8 +66,16 @@ export const MainLayout = (props) => {
         <Header style={headerStyle}>
           <Flex justify="space-between" wrap>
             <Avatar shape="square" size={64} icon={<CgWebsite />} />
-            <Avatar shape="square" size={64} icon={<BiUser />} onClick={showLoginModal}/>
-            
+            {user ? (
+              <MenuUser />
+            ) : (
+              <Avatar
+                shape="square"
+                size={64}
+                icon={<BiUser />}
+                onClick={showLoginModal}
+              />
+            )}
           </Flex>
         </Header>
 

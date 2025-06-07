@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Router, RouterProvider } from "react-router";
 import { router } from "./route/route";
+import { AuthProvider } from "./contexts/authContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const header = React.createElement(
@@ -16,7 +17,9 @@ const header = React.createElement(
 console.log(<App />);
 root.render(
   <React.StrictMode>
+    <AuthProvider>
       <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
 
