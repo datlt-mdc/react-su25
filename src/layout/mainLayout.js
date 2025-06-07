@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Avatar, Flex, Layout } from "antd";
+import { Avatar, Button, Flex, Layout } from "antd";
 import { BiUser } from "react-icons/bi";
 import { CgWebsite } from "react-icons/cg";
 import LoginModal from "../components/loginModal";
+import { useLogout } from "../utils/getUserInfo";
 const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle = {
@@ -61,17 +62,16 @@ export const MainLayout = (props) => {
         handleLoginOk={handleLoginOk}
       />
       <Layout style={layoutStyle}>
-
-
         <Header style={headerStyle}>
           <Flex justify="space-between" wrap>
             <Avatar shape="square" size={64} icon={<CgWebsite />} />
             <Avatar shape="square" size={64} icon={<BiUser />} onClick={showLoginModal}/>
+            
           </Flex>
         </Header>
 
         <Content>{props.children}</Content>
-        <Footer style={footerStyle}>Footer</Footer>
+        <Footer style={footerStyle}>Footer ABC</Footer>
       </Layout>
     </Flex>
   );
